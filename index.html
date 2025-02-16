@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Interactiva</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5dc;
+            flex-direction: column;
+        }
+        .carta-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            cursor: pointer;
+        }
+        .carta {
+            width: 100%;
+            height: 100%;
+            background-image: url('carta-cerrada.png'); /* Imagen de la carta cerrada */
+            background-size: cover;
+            position: absolute;
+            transition: transform 0.5s;
+        }
+        .carta.abierta {
+            transform: rotateX(180deg);
+            background-image: url('carta-abierta.png'); /* Imagen de la carta abierta */
+        }
+        .contenido {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            background: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .flores {
+            display: none;
+            width: 90vw;
+            max-width: 400px;
+            height: auto;
+            margin-top: 20px;
+        }
+        .mensaje {
+            display: none;
+            font-size: 28px;
+            font-weight: bold;
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="carta-container" onclick="abrirCarta()">
+        <div class="carta"></div>
+        <div class="contenido" id="contenido">
+            <p>Mi hermoso rayito de sol,</p>
+            <p>Te escribo esta carta porque te amo y quiero que sepas que JAMÁS tienes que sentirte no merecedora de amor.</p>
+            <p>¿Sabes por qué las obras de arte están en los museos?</p>
+            <p>Porque si viéramos el arte en la calle, no sabríamos apreciar su verdadero valor, así sucede aveces, no todos saben reconocer una obra de arte cuando la tienen de frente en su
+               vida diaria.</p>
+            <p>Tal vez no pueda ofrecerte el cielo, la luna y las estrellas pero siempre estaré ahí para sostenerte cuando lo necesites.</p>
+            <p>Te amo muchísimo, me gustaría darte esta carta en persona pero debido a la distancia, te la hago llegar por este medio.</p>
+            <p>Recuerda siempre que tendrás a alguien que te ama mucho y que siempre siempre voy a querer verte brillar</p>
+            <p>P.d. Haz clic de nuevo</p>
+        </div>
+    </div>
+    <img src="flores.png" id="flores" class="flores">
+    <div id="mensaje" class="mensaje">¡Feliz día del amor y la amistad!</div>
+
+    <script>
+        let cartaAbierta = false;
+        
+        function abrirCarta() {
+            const carta = document.querySelector('.carta');
+            const contenido = document.getElementById('contenido');
+            const flores = document.getElementById('flores');
+            const mensaje = document.getElementById('mensaje');
+            
+            if (!cartaAbierta) {
+                carta.classList.add('abierta');
+                setTimeout(() => {
+                    contenido.style.display = 'block';
+                }, 500);
+                cartaAbierta = true;
+            } else {
+                contenido.style.display = 'none';
+                flores.style.display = 'block';
+                setTimeout(() => {
+                    mensaje.style.display = 'block';
+                }, 500);
+            }
+        }
+    </script>
+</body>
+</html>
